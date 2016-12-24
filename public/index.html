@@ -67,14 +67,15 @@
   socket.on('status', function (data) {
 	if(data.scratchConnected){
 		link.innerHTML = "Connected";
+		if(data.armed){
+			mode.innerHTML = "Armed";
+		}else{
+			mode.innerHTML = "Disarmed";
+		}
 	}
 	
-	if(data.armed){
-		mode.innerHTML = "Armed";
-	}else{
-		mode.innerHTML = "Disarmed";
-	}
-	
+	console.log('status', data);
+
   });
   
   socket.on('alarm', function () {

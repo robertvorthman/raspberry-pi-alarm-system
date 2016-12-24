@@ -17,9 +17,12 @@ if(config.makerKey){
 app.use(express.static(path.join(__dirname, 'public')));
 
 //state
+var scratchSocket;
 var scratchConnected = false;
-var armed = 0;
+var armed = 1;
 var lastIftttTrigger = 0;
+
+connectScratch();
 
 io.on('connection', function (socket) {
 
@@ -39,18 +42,28 @@ io.on('connection', function (socket) {
   });
 });
 
-var scratchSocket = scratchRSP.createConnection(config.host, function () {
-    scratchConnected = true;
-	console.log('Connected to Scratch');
-	io.emit('online');
-	scratchSocket.broadcast('init');
-	scratchSocket.on('broadcast', handleScratchBroadcast);
-});
+function connectScratch(){
+	scratchSocket = scratchRSP.createConnection(config.host, function () {
+		scratchConnected = true;
+		console.log('Connected to Scratch');
+		io.emit('status', { 
+			scratchConnected: scratchConnected,
+			armed: armed,
+			config: config
+		});
+		scratchSocket.broadcast('init');
+		scratchSocket.on('broadcast', handleScratchBroadcast);
+	});
 
-scratchSocket.on('error', (e) => {
-	console.log('ERROR unable to connect to scratch ');
-	io.emit('offline');
-});
+	scratchSocket.on('error', (e) => {
+		console.log('ERROR unable to connect to scratch ');
+		io.emit('offline');
+		//retry every 30 seconds
+		setTimeout(connectScratch, 30*1000);
+	});
+}
+
+
 
 
 function handleScratchBroadcast(subject){
@@ -142,6 +155,12 @@ console.log('Set state '+targetState);
 })
 
 function setState(targetState){
+
+	if(!scratchConnected || !scratchSocket){
+		console.log('Unable to set state '+targetState+'. Scratch not connected');
+		return;
+	}
+
 	switch(targetState){
 		case 'armed':
 			scratchSocket.broadcast('armed');
