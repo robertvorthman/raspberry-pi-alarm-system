@@ -1,6 +1,6 @@
 {
-	host: 'raspberrypi',
-	port: 3000,
+	host: 'localhost',
+	port: 80,
 	homebridgeWebhookPort: null,
 	cooldownSeconds: 5,
 	makerKey: '',
