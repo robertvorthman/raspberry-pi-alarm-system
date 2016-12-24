@@ -16,10 +16,9 @@ homebridge-http-webhooks port is optional
 
 ##Web Service URIs
 
-http://localhost:3000/setState/disarmed
-http://localhost:3000/setState/armed
-http://localhost:3000/getState 
-  returns either a 1 or a 0 for armed or disarmed
+* http://localhost:3000/setState/disarmed
+* http://localhost:3000/setState/armed
+* http://localhost:3000/getState (returns either a 1 or a 0 for armed or disarmed)
 
 ## IFTTT
 IFTTT maker event name is "motion-alarm"
