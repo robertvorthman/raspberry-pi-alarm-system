@@ -57,7 +57,7 @@
 	var status = document.querySelector("#status");
 	var mode = document.querySelector("#mode");
 
-  var socket = io('http://localhost:3000/');
+  var socket = io('http://localhost/');
   
   socket.on('status', function (data) {
 	if(data.scratchConnected){
