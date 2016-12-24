@@ -41,7 +41,7 @@
 
 <body>
 	<table>
-		<tr><th>Status</th><td id='link'>Unknown</td></tr>
+		<tr><th>Status</th><td id='link'>Disconnected</td></tr>
 		<tr><th>Mode</th><td id='mode'>Unknown</td></tr>
 	</table>
 	<div id='buttons'>
@@ -58,6 +58,10 @@
 	var mode = document.querySelector("#mode");
 
   var socket = io();
+  
+  socket.on('disconnect', function(){
+  	link.innerHTML = "Disconnected";
+  });
   
   socket.on('status', function (data) {
 	if(data.scratchConnected){
