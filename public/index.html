@@ -1,0 +1,102 @@
+<html>
+
+<head>
+    <title>Alarm System</title>
+    <style type="text/css">
+    	body {
+    		font-family: monospace;
+    		background-color: black;
+    		color: #0F0;
+    	}
+    	
+    	th, td {
+    		font-size: 4em;
+    	}
+    	
+    	th {
+    		text-align: right;
+    		padding: 4px 26px;
+    	}
+    	
+    	table{
+    		border: none;
+    		margin: 5px auto;
+    	}
+    	
+    	#buttons{
+    		width: 50%;
+    		margin: 0 auto;
+    	}
+    	
+    	button {
+			width: 49%;
+			height: 40px;
+			border-radius: 14px;
+			font-size: 20px;
+			font-weight: 700;
+    	}
+    	
+    </style>
+</head>
+
+<body>
+	<table>
+		<tr><th>Status</th><td id='link'>Unknown</td></tr>
+		<tr><th>Mode</th><td id='mode'>Unknown</td></tr>
+	</table>
+	<div id='buttons'>
+		<button onclick="arm()">Arm</button>
+		<button onclick="disarm()">Disarm</button>
+	</div>
+
+    <script type='text/javascript' src="/socket.io/socket.io.js"></script>
+
+<script type='text/javascript'>
+
+	var body = document.querySelector("body");
+	var status = document.querySelector("#status");
+	var mode = document.querySelector("#mode");
+
+  var socket = io('http://localhost:3000/');
+  
+  socket.on('status', function (data) {
+	if(data.scratchConnected){
+		link.innerHTML = "Connected";
+	}
+	
+	if(data.armed){
+		mode.innerHTML = "Armed";
+	}else{
+		mode.innerHTML = "Disarmed";
+	}
+	
+  });
+  
+  socket.on('alarm', function () {
+    body.style.backgroundColor = "red";
+  });
+  
+  socket.on('clear', function () {
+    body.style.backgroundColor = "black";
+  });
+  
+  socket.on('armed', function () {
+    mode.innerHTML = "Armed";
+  });
+  
+  socket.on('disarmed', function () {
+    mode.innerHTML = "Disarmed";
+  });
+  
+  function arm(){
+  	socket.emit('arm');
+  }
+  
+  function disarm(){
+  	socket.emit('disarm');
+  }
+</script>
+
+</body>
+
+</html>

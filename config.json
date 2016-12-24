@@ -1,0 +1,8 @@
+{
+	host: 'raspberrypi',
+	port: 3000,
+	homebridgeWebhookPort: null,
+	cooldownSeconds: 5,
+	makerKey: '',
+	iftttCooldownSeconds: 60
+}

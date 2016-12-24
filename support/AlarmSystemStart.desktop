@@ -1,0 +1,21 @@
+[Desktop Entry]
+
+Encoding=UTF-8
+
+Version=1.0
+
+Type=Application
+
+Exec=/home/pi/Scratch/AlarmSystemStart.sh
+
+Icon=scratch
+
+Terminal=false
+
+Name=Program name
+
+Comment=About the program
+
+Categories=Application;Education;Development;
+
+MimeType=application/x-scratch-project

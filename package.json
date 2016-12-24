@@ -1,0 +1,26 @@
+{
+  "name": "alarm-system-server",
+  "version": "1.0.0",
+  "description": "Web server to arm/disarm alarm system, respond to alarm events",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "scratch",
+    "pir",
+    "motion",
+    "alarm",
+    "HC-SR501",
+    "ifttt"
+  ],
+  "author": "Robert Vorthman",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.14.0",
+    "iftttmaker": "^1.2.1",
+    "read-config": "^2.0.0",
+    "scratch-rsp": "0.0.3",
+    "socket.io": "^1.7.2"
+  }
+}
