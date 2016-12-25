@@ -1,0 +1,28 @@
+{
+    "bridge": {
+        "name": "Homebridge",
+        "username": "CC:22:3D:E3:CE:30",
+        "port": 51826,
+        "pin": "031-45-154"
+    },
+
+    "accessories": [{
+        "accessory": "Http",
+        "name": "Alarm",
+        "switchHandling": "realtime",
+        "http_method": "GET",
+        "on_url": "http://localhost/setState/armed",
+        "off_url": "http://localhost/setState/disarmed",
+        "status_url": "http://localhost/getState"
+    }],
+
+    "platforms": [{
+        "platform": "HttpWebHooks",
+        "webhook_port": "51828",
+        "sensors": [{
+            "id": "alarmSensor",
+            "name": "Alarm Sensor",
+            "type": "motion"
+        }]
+    }]
+}
