@@ -1,9 +1,9 @@
 var http = require('http');
 var express = require('express');
 var app = express();
-var http = require('http').Server(app);
+var server = http.Server(app);
 var path = require('path');
-var io = require('socket.io')(http);
+var io = require('socket.io')(server);
 var scratchRSP = require('scratch-rsp');
 var ifttt = require('iftttmaker')
 var maker = null;
@@ -180,6 +180,6 @@ app.get('/getState', function (req, res) {
 });
 
 //Start Server
-http.listen(config.port, function() {
+server.listen(config.port, function() {
     console.log('Alarm System Server running at http://'+config.host+':'+config.port);
 });
