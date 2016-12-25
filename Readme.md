@@ -14,11 +14,14 @@ Update config.json with your settings
 ifttt maker key optional
 homebridge-http-webhooks port is optional
 
-##Web Service URIs
+## Web Interface
+* http://localhost
+Shows Arm and Disarm buttons.  Flashes red when motion detected.
 
-* http://localhost:3000/setState/disarmed
-* http://localhost:3000/setState/armed
-* http://localhost:3000/getState (returns either a 1 or a 0 for armed or disarmed)
+##Web Service URIs
+* http://localhost/setState/disarmed
+* http://localhost/setState/armed
+* http://localhost/getState (returns either a 1 or a 0 for armed or disarmed)
 
 ## IFTTT
 IFTTT maker event name is "motion-alarm"
