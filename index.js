@@ -51,7 +51,6 @@ function connectScratch(){
 			armed: armed,
 			config: config
 		});
-		scratchSocket.broadcast('init');
 		scratchSocket.on('broadcast', handleScratchBroadcast);
 	});
 
