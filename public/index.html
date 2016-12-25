@@ -4,9 +4,9 @@
     <title>Alarm System</title>
     <style type="text/css">
     	body {
-    		font-family: monospace;
+    		font-family: "Courier New", Courier, monospace;
     		background-color: black;
-    		color: #0F0;
+    		color: white;
     	}
     	
     	th, td {
@@ -16,25 +16,33 @@
     	th {
     		text-align: right;
     		padding: 4px 26px;
+    		font-weight: 400;
+    	}
+    	
+    	td {
+    		font-weight: 700;
     	}
     	
     	table{
     		border: none;
     		margin: 5px auto;
+    		height: 50%;
     	}
     	
     	#buttons{
-    		width: 50%;
+    		width: 70%;
+    		height: 50%;
     		margin: 0 auto;
     	}
     	
     	button {
-			width: 49%;
-			height: 40px;
-			border-radius: 14px;
-			font-size: 20px;
-			font-weight: 700;
-			color: white;
+			width: 45%;
+    		height: 40%;
+    		border-radius: 14px;
+    		font-size: 59px;
+    		font-weight: 700;
+    		color: white;
+    		background-color: gray;
     	}
     	
     </style>
@@ -42,8 +50,8 @@
 
 <body>
 	<table>
-		<tr><th>Status</th><td id='link'>Disconnected</td></tr>
-		<tr><th>Mode</th><td id='mode'>Unknown</td></tr>
+		<tr><th>Status</th><td id='link' style='color:orange'>Disconnected</td></tr>
+		<tr><th>Mode</th><td id='mode' style='color:orange'>Unknown</td></tr>
 	</table>
 	<div id='buttons'>
 		<button onclick="arm()">Arm</button>
@@ -67,10 +75,13 @@
   socket.on('status', function (data) {
 	if(data.scratchConnected){
 		link.innerHTML = "Connected";
+		link.style.color = 'green';
 		if(data.armed){
 			mode.innerHTML = "Armed";
+			mode.style.color = 'orange';
 		}else{
 			mode.innerHTML = "Disarmed";
+			mode.style.color = 'green';
 		}
 	}
 	
@@ -88,10 +99,12 @@
   
   socket.on('armed', function () {
     mode.innerHTML = "Armed";
+    mode.style.color = 'green';
   });
   
   socket.on('disarmed', function () {
     mode.innerHTML = "Disarmed";
+    mode.style.color = 'orange';
   });
   
   function arm(){
