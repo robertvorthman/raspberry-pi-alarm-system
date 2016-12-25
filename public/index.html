@@ -50,8 +50,8 @@
 
 <body>
 	<table>
-		<tr><th>Status</th><td id='link' style='color:orange'>Disconnected</td></tr>
-		<tr><th>Mode</th><td id='mode' style='color:orange'>Unknown</td></tr>
+		<tr><th>Status</th><td id='link' style='color:red'>Disconnected</td></tr>
+		<tr><th>Mode</th><td id='mode' style='color:red'>Unknown</td></tr>
 	</table>
 	<div id='buttons'>
 		<button onclick="arm()">Arm</button>
@@ -78,10 +78,10 @@
 		link.style.color = 'green';
 		if(data.armed){
 			mode.innerHTML = "Armed";
-			mode.style.color = 'orange';
+			mode.style.color = 'green';
 		}else{
 			mode.innerHTML = "Disarmed";
-			mode.style.color = 'green';
+			mode.style.color = 'armed';
 		}
 	}
 	
