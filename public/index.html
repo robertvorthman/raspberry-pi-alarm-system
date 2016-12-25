@@ -78,10 +78,10 @@
 		link.style.color = 'green';
 		if(data.armed){
 			mode.innerHTML = "Armed";
-			mode.style.color = 'green';
+			mode.style.color = 'orange';
 		}else{
 			mode.innerHTML = "Disarmed";
-			mode.style.color = 'armed';
+			mode.style.color = 'green';
 		}
 	}
 	
@@ -99,12 +99,12 @@
   
   socket.on('armed', function () {
     mode.innerHTML = "Armed";
-    mode.style.color = 'green';
+    mode.style.color = 'orange';
   });
   
   socket.on('disarmed', function () {
     mode.innerHTML = "Disarmed";
-    mode.style.color = 'orange';
+    mode.style.color = 'green';
   });
   
   function arm(){
