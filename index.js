@@ -3,6 +3,7 @@ var express = require('express');
 var app = express();
 var server = http.Server(app);
 var path = require('path');
+var exec = require('child_process').exec;
 var io = require('socket.io')(server);
 var scratchRSP = require('scratch-rsp');
 var ifttt = require('iftttmaker')
@@ -26,6 +27,8 @@ connectScratch();
 
 io.on('connection', function (socket) {
 
+	console.log('io connection');
+
   socket.emit('status', { 
   	scratchConnected: scratchConnected,
   	armed: armed,
@@ -40,6 +43,15 @@ io.on('connection', function (socket) {
   	setState('disarmed');
     console.log('disarm command received');
   });
+  
+  socket.on('reboot', function (data){
+  	exec('sudo reboot');
+  });
+  
+  socket.on('shutdown', function (data){
+  	exec('sudo shutdown');
+  });
+  
 });
 
 function connectScratch(){

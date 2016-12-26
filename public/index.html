@@ -57,6 +57,9 @@
 		<button onclick="arm()">Arm</button>
 		<button onclick="disarm()">Disarm</button>
 	</div>
+	<div id='tools'>
+		<span id='reboot' onclick="reboot()">Reboot</span> | <span id='shutdown' onclick="shutdown()">Shutdown</span>
+	</div>
 
     <script type='text/javascript' src="/socket.io/socket.io.js"></script>
 
@@ -114,6 +117,14 @@
   
   function disarm(){
   	socket.emit('disarm');
+  }
+  
+  function reboot(){
+  	socket.emit('reboot');
+  }
+  
+  function shutdown(){
+  	socket.emit('shutdown');
   }
 </script>
 
