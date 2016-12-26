@@ -171,7 +171,13 @@ function setState(targetState){
 		console.log('Unable to set state '+targetState+'. Scratch not connected');
 		return;
 	}
-
+	
+	//do nothing if state already correct
+	if(targetState == "armed" && armed)
+		return;
+	if(targetState == "disarmed" && !armed)
+		return;
+	
 	switch(targetState){
 		case 'armed':
 			scratchSocket.broadcast('armed');

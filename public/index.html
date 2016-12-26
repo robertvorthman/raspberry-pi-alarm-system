@@ -74,6 +74,7 @@
   socket.on('disconnect', function(){
   	link.innerHTML = "Disconnected";
   	link.style.color = 'red';
+  	body.style.backgroundColor = "black";
   });
   
   socket.on('status', function (data) {
