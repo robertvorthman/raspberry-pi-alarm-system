@@ -49,7 +49,7 @@ io.on('connection', function (socket) {
   });
   
   socket.on('shutdown', function (data){
-  	exec('sudo shutdown');
+  	exec('sudo shutdown now');
   });
   
 });
